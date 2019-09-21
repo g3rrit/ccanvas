@@ -20,6 +20,6 @@ void event_loop(ccanvas *cc);
 
 void put_pixel(ccanvas *cc, int x, int y, byte r, byte g, byte b, byte a);
 
-void clear_screen(ccanvas *cc);
+void clear_screen(ccanvas *cc, byte r, byte g, byte b, byte a);
 
 #endif

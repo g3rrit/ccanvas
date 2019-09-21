@@ -44,7 +44,11 @@ void quit(ccanvas *cc) {
 void event_loop(ccanvas *cc) {
   SDL_Event event;
   for(;;) {
-    if(SDL_PollEvent(&event) && event.type == SDL_QUIT) {
+    if(!SDL_PollEvent(&event)) {
+      continue;
+    }
+
+    if(event.type == SDL_QUIT) {
       break;
     }
   }
@@ -62,8 +66,8 @@ void put_pixel(ccanvas *cc, int x, int y, byte r, byte g, byte b, byte a) {
   SDL_RenderPresent(cc->ren);
 }
 
-void clear_screen(ccanvas *cc) {
-  if(SDL_SetRenderDrawColor(cc->ren, 0, 0, 0, 0)) {
+void clear_screen(ccanvas *cc, byte r, byte g, byte b, byte a) {
+  if(SDL_SetRenderDrawColor(cc->ren, r, g, b, a)) {
     printf("unable to set draw color");
     exit(-1);
   }
